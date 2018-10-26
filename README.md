@@ -1,9 +1,9 @@
 # master_thesis
 The code used in my master thesis "Superconductor-Insulator Quantum PhaseTransitions in a Dissipative Environment". Follow this procedure to use the files:
 
-1. Download all files.
+1. Download all files into a folder.
 
-2. Create a folder named data and one named bessel_list_files.
+2. Create one subfolder named data and one named bessel_list_files.
 
 3. Run create_bessel_list.m. This creates lists of values of log(I_1(E_J*Delta_tau)/I_0(E_J*Delta_tau)) for different values of K and choices of Delta_tau. The function takes the following arguments: create_bessel_list(K_min, K_max, number_of_K_values, alpha_min, alpha_max, number_of_alpha_values, [list of lambda values], [list of Ec_times_beta], [list of factor values]).
 
