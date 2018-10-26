@@ -1,4 +1,4 @@
-function [legendCell, Ec_times_beta]=plotCppData(fileName,fig)
+function plotCppData(fileName,fig)
 
 set(0,'DefaultLegendFontSize',12,'DefaultLegendFontSizeMode','manual','defaulttextinterpreter','latex');
 pathName =strcat('data/',fileName);
@@ -12,7 +12,7 @@ Lx = dlmread(pathName,' ',[0 lengthKvec+1 0 lengthKvec+1]);
 alphaVec=dlmread(pathName,' ',[1 0 1 lengthAlphaVec-1]);
 doubleAlphaVec =2*alphaVec;
 Nstat = dlmread(pathName,' ',[2 0 2 0]);
-Nwarmup = dlmread(pathName,' ',[2 1 2 1])
+Nwarmup = dlmread(pathName,' ',[2 1 2 1]);
 Nprod = dlmread(pathName,' ',[2 2 2 2]);
 alpha_lower = dlmread(pathName,' ',[2 5 2 5]);
 alpha_upper = dlmread(pathName,' ',[2 6 2 6]);
@@ -24,7 +24,7 @@ lambda = dlmread(pathName,' ',[2 9 2 9]);
 color_vec = {[255/255 153/255 255/255] [0 1 1], [1 0 1], [1 0 0], [0 1 0], [0 0 1],[0 0 0],[0 0.5 1],[1 0.5 0],[153/255 255/255 0/255]};
 
 key_set = [0.05 0.1, 0.2, 0.4, 0.8, 1.5, 2.5, 3,6,9];
-color_map = containers.Map(key_set,color_vec)
+color_map = containers.Map(key_set,color_vec);
 
 if fig ~=0
      figure(fig);
