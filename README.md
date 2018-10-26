@@ -1,5 +1,5 @@
 # master_thesis
-The code used in my master thesis "Superconductor-Insulator Quantum PhaseTransitions in a Dissipative Environment". To run, do the following:
+The code used in my master thesis "Superconductor-Insulator Quantum PhaseTransitions in a Dissipative Environment". Follow this procedure to use the files:
 
 1. Download all files.
 
