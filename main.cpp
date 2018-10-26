@@ -6,7 +6,6 @@ simulations to study phase transitions in Josephson junction chains.
 */
 
 #include <cstdlib>
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <vector>
 #include <numeric>
@@ -23,6 +22,8 @@ simulations to study phase transitions in Josephson junction chains.
 #include "BAndGFunction.h"
 #include "deltaSxandSt.h"
 #include <map>
+
+const double M_PI = 3.14159265358979323846;
 
 using namespace std;
 
