@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 #ifndef DELTASXANDST_H
 #define DELTASXANDST_H
 //extern map<double, double> bessel_list_1;

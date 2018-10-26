@@ -44,7 +44,8 @@ void write_to_file(const vector<T> &vector, const bool first_entry_in_row,
 
 double STD(const vector<double> &v, const double ave);
 void fill_bessel_hash(const double Ec_times_beta, const double lambda, 
-	const vector<double>& alpha_vec, const vector<double>& K_vec, const double factor, const int remote_computer);
+	const vector<double>& alpha_vec, const vector<double>& K_vec, 
+	const double factor, const int remote_computer);
 
 random_device rd;
 mt19937 mt(rd());
@@ -155,8 +156,8 @@ int main(int argc, char* argv[]) {
 	write_to_file(vector<int>{N_prod}, false, false, output_file_name);
 	write_to_file(vector<int>{(int) alpha_vec.size()}, false, false, output_file_name);
 	write_to_file(vector<int>{(int) K_vec.size()}, false, false, output_file_name);
-	write_to_file(vector<double>{ alpha_lower, alpha_upper, extra_Nprod_factor / 1.0, time_step_factor }, 
-		false, false, output_file_name);
+	write_to_file(vector<double>{ alpha_lower, alpha_upper, 
+		extra_Nprod_factor / 1.0, time_step_factor }, false, false, output_file_name);
 	write_to_file(vector<double>{lambda}, false, false, output_file_name);
 
 	// For timing of computation time
@@ -183,12 +184,16 @@ int main(int argc, char* argv[]) {
 			double alpha = alpha_vec[u];
 
 			// determine time-step and Lt
-			vector<double> alternatives{ 1.0 / (time_step_factor*K), 1.0 / (time_step_factor*K*lambda), 
-				2 * M_PI*alpha/time_step_factor, 2 * M_PI*alpha / (time_step_factor*lambda*lambda) };
+			vector<double> delta_tau_alternatives{ 1.0 / (time_step_factor*K), 
+				1.0 / (time_step_factor*K*lambda), 
+				2 * M_PI*alpha/time_step_factor, 
+				2 * M_PI*alpha / (time_step_factor*lambda*lambda) };
 
-			int delta_tau_choice = distance(alternatives.begin(), min_element(alternatives.begin(), alternatives.end()));
-			int Lt = ceil(Ec_times_beta / alternatives[delta_tau_choice]);
+			int delta_tau_choice = distance(delta_tau_alternatives.begin(), 
+				min_element(delta_tau_alternatives.begin(), delta_tau_alternatives.end()));
+			int Lt = ceil(Ec_times_beta / delta_tau_alternatives[delta_tau_choice]);
 
+			cout << "choice: " << delta_tau_choice << endl;
 			cout << "Lt: " << Lt << endl;
 			
 			double Ec_times_delta_tau = Ec_times_beta / Lt;
@@ -476,6 +481,8 @@ void MC_worm(const double K, const int Lx, const int Lt, const double lambda,
 		}
 	}
 
+	
+	/*Uncomment if you want to write the created worm to file*/
 	/*if (production_run && worm_Jt != vector<int>(Lt * (Lx + 2), 0) && debug_Q!=0) {
 		write_to_file(start_pos, true, true, "worm.txt");
 		write_to_file(vector<int>{Lx, Lt}, false, false, "worm.txt");
@@ -634,8 +641,11 @@ void fill_bessel_hash(const double Ec_times_beta, const double lambda,
 
 	if (!Ec_times_beta_is_in_list || !factor_is_in_list || !lambda_is_in_list || !all_alphas_are_in_list || !all_Ks_are_in_list) {
 		cout << "Error! The used parameters have not their listed bessel-values!" << endl;
-		cout << Ec_times_beta_is_in_list << " " << factor_is_in_list << " " 
-			<< lambda_is_in_list << " " << all_alphas_are_in_list << " " << all_Ks_are_in_list;
+		cout << "Ec_times_beta is in_list: " << Ec_times_beta_is_in_list <<
+			"\ndelta_tau factor is in list: " << factor_is_in_list <<
+			"\nlambda value is in list: " << lambda_is_in_list <<
+			"\nall alpha values are in list: " << all_alphas_are_in_list <<
+			"\nall K values are in list: " << all_Ks_are_in_list << endl;
 		//exit(EXIT_FAILURE);
 	}
 
@@ -663,10 +673,13 @@ void fill_bessel_hash(const double Ec_times_beta, const double lambda,
 		if (fabs(Ec_times_beta_read - Ec_times_beta) < 0.00001 && fabs(lambda_read - lambda) < 0.00001 && fabs(factor_read - factor) < 0.00001) {
 			bessel_list_3[make_pair(alpha,K)] = bessel_value;
 
+
 		}
 	}
 
-	cout << "check:" << bessel_list_0[0.4] << ", " <<  bessel_list_1[0.4] << ", " << bessel_list_2[make_pair(0.6, 0.8)] << ", " << bessel_list_3[make_pair(0.6, 0.8)] << endl;
+	cout << "check:" << bessel_list_0[0.1] << ", " <<  bessel_list_1[0.1] << 
+		", " << bessel_list_2[make_pair(0.1, 0.1)] << 
+		", " << bessel_list_3[make_pair(0.1, 0.1)] << endl;
 
 	return;
 }

@@ -27,12 +27,18 @@ Josephson-chain*/
 double delta_Sx(const int pmOne, const int x, const int t, const double K, const double alpha, const int delta_tau_choice, const double lambda, const vector<int> &Jx, const int Lx) {
 	
 	double bessel_value=0.0;
+	
+	//cout << delta_tau_choice;
 	switch (delta_tau_choice)
 	{
 	case 0: bessel_value = bessel_list_0[K];
+		break;
 	case 1: bessel_value = bessel_list_1[K];
+		break;
 	case 2: bessel_value = bessel_list_2[make_pair(alpha,K)];
+		break;
 	case 3: bessel_value = bessel_list_3[make_pair(alpha,K)];
+		break;
 	}
 
 	return -bessel_value*(pmOne*2.0*Jx[t*(Lx + 1) + x] + 1.0);
