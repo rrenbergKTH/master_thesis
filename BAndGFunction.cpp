@@ -1,9 +1,10 @@
 #include "BAndGFunction.h"
 #include <vector>
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <numeric>
 #include <iostream>
+
+const double M_PI = 3.14159265358979323846;
 
 using namespace std;
 

@@ -6,8 +6,7 @@ using namespace std;
 
 #ifndef DELTASXANDST_H
 #define DELTASXANDST_H
-//extern map<double, double> bessel_list_1;
-//extern map<pair<double,double>, double> bessel_list_2;
+
 extern map<double, double> bessel_list_0;
 extern map<double, double> bessel_list_1;
 extern map<pair<double,double>, double> bessel_list_2;

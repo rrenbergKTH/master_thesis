@@ -1,9 +1,10 @@
 #include "deltaSQ.h"
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <iostream>
 #include <numeric> 
 #include <algorithm>
+
+const double M_PI = 3.14159265358979323846;
 
 using namespace std;
 

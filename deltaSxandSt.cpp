@@ -2,8 +2,9 @@
 #include "deltaSxandSt.h"
 #include <iostream>
 #include <vector>
-#define _USE_MATH_DEFINES
 #include <math.h>
+
+const double M_PI = 3.14159265358979323846;
 
 using namespace std;
 
