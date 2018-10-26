@@ -13,4 +13,4 @@ A working example: create_bessel_list(0.05, 10, 200, 0.05, 1, 20,[10 0.1], [0.1 
 
 A working example: data/file_name.txt 2 0.1 1.0 -alpha 0.95 1.0 -lambda 10 -Nwarmup 100000 -Nprod 100000 -factor 1 -remote 0. 
 
-5. Plot your data with plotCppData.m with e.g. the following command: plotCppData('file_name.txt',2).
+5. After the simulation is completed, plot your data with plotCppData.m with e.g. the following command: plotCppData('file_name.txt',2).
